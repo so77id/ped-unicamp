@@ -1,0 +1,2 @@
+Triângulo isósceles.
+Triângulo obtusângulo.

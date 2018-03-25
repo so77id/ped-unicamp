@@ -1,0 +1,2 @@
+Triângulo equilátero.
+Triângulo acutângulo.

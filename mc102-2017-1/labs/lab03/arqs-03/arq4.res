@@ -1,0 +1,2 @@
+Triângulo escaleno.
+Triângulo acutângulo.
