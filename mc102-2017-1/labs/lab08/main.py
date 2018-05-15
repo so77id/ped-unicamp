@@ -254,7 +254,6 @@ def find_word(map, word):
 def paint_word(map_, map, coords):
     for (i,j) in coords:
         map_[i][j] = map[i][j]
-    return map_
 
 
 m = []
@@ -277,6 +276,6 @@ for i in range(n):
 
 for word in words:
     coords = find_word(m, word)
-    m_ = paint_word(m_, m, coords)
+    paint_word(m_, m, coords)
 
 print_map(m_)
