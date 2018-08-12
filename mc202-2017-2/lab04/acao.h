@@ -7,14 +7,14 @@
 
 typedef struct {
     char nome[MAX_SIZE_NAME];
-    float investimento;
-    float variacoes[MAX_SIZE_VAR];
+    double investimento;
+    double variacoes[MAX_SIZE_VAR];
     int n_variacoes;
 } acao;
 
-acao criar_acao(char *nome, float investimento);
+acao criar_acao(char *nome, double investimento);
 
-acao adicionar_variacao(acao a, float variacao);
+acao adicionar_variacao(acao a, double variacao);
 
 void reportar_acao(acao a);
 

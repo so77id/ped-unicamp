@@ -3,7 +3,7 @@
 #include "acao.h"
 
 
-acao criar_acao(char *nome, float investimento) {
+acao criar_acao(char *nome, double investimento) {
     acao a;
     strcpy(a.nome, nome);
     a.investimento = investimento;
@@ -12,7 +12,7 @@ acao criar_acao(char *nome, float investimento) {
     return a;
 }
 
-acao adicionar_variacao(acao a, float variacao) {
+acao adicionar_variacao(acao a, double variacao) {
     a.variacoes[a.n_variacoes] = variacao;
     a.n_variacoes++;
     return a;
@@ -22,7 +22,7 @@ void reportar_acao(acao a) {
     int i;
     char msg[6];
 
-    float valor = a.investimento;
+    double valor = a.investimento;
     for (i = 0; i < a.n_variacoes; i++) {
         valor *= (a.variacoes[i] + 100.0) / 100.0;
     }

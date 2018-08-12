@@ -6,7 +6,7 @@
 int main(int argc, char const *argv[]) {
     char nome[MAX_SIZE_NAME], sobrenome[MAX_SIZE_NAME], acao_nome[MAX_SIZE_NAME];
     int n_acoes, n_variacoes, i, j;
-    float investimento, variacao;
+    double investimento, variacao;
     portfolio p;
     acao a;
 
@@ -18,12 +18,12 @@ int main(int argc, char const *argv[]) {
 
     for (i = 0; i < n_acoes; i++) {
         scanf("%s", acao_nome);
-        scanf("%f", &investimento);
+        scanf("%lf", &investimento);
         scanf("%d", &n_variacoes);
 
         a = criar_acao(acao_nome, investimento);
         for (j = 0; j < n_variacoes; j++) {
-            scanf("%f", &variacao);
+            scanf("%lf", &variacao);
             a = adicionar_variacao(a, variacao);
         }
 

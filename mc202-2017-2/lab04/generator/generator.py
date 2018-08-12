@@ -14,7 +14,7 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 
 max_stocks = 100
 max_variations = 20
-examples = 15
+examples = 30
 
 def clip(n, max):
     if n>max:
@@ -52,4 +52,3 @@ def gen(path, reduction=1):
                 file.write(stock_s)
 
 gen("../testes_abertos")
-gen("../testes_fechados")
