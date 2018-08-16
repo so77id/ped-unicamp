@@ -1,0 +1,54 @@
+SHELL := /bin/bash
+filter :=
+interfiles := main
+filsuf := .gab
+aux :=
+tmpsuf := .tmp__
+difsuf := .dif__
+precompile:
+	None echo $$? > precompile__codes__
+compile:
+	/usr/local/bin/gcc -ansi -pedantic-errors -Wall -Werror -lm -o main *.c > compile__ 2>&1; echo $$? > compile__codes__
+postcompile:
+	chmod ug=rwx,o= main; echo $$? > postcompile__codes__
+execute:
+	ulimit -c 0; ulimit -t 2;  ulimit -d 100; ulimit -f 2500000; ulimit -s 1000;  \
+	t=$(test); \
+	time ( main <arq$$t.in   >arq$$t.res  2>arq$$t.err; echo $$? >> execute__codes__ ) 2>> time$$t.txt
+filter:
+ifneq ($(filter),)
+	for t in $(tests); do \
+	  for f in arq$$t.res; do \
+	    $(filter) < $$f > $$f$(filsuf); \
+            echo $$? >> filter__codes__;\
+	  done; \
+	done
+else
+	for t in $(tests); do \
+	  for f in arq$$t.res; do \
+            echo 0 >> filter__codes__;\
+	  done; \
+	done
+endif
+check:
+ifeq ($(filter),)
+	for t in $(tests); do \
+	  for f in arq$$t.res; do \
+	    /usr/bin/diff  $$f  $(installdir)/dados/$$f > f$$t$(difsuf); \
+	    echo $$? >> check__codes__; \
+	  done; \
+	done
+else
+	for t in $(tests); do \
+          for f in arq$$t.res; do \
+	    /usr/bin/diff  $$f$(filsuf) $(installdir)/dados/$$f$(filsuf) > f$$t$(difsuf); \
+	    echo $$? >> check__codes__; \
+	  done; \
+	done
+endif
+clean:
+ifneq ($(interfiles),)
+	for f in main; do \
+	    rm -f  $$f; \
+	done
+endif
