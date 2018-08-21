@@ -1,6 +1,7 @@
-MAIN = lab02
+MAIN = lab05
 
 SRC = $(wildcard *.c)
+DEPS = $(wildcard *.h)
 OBJ = $(patsubst %.c, %.o, $(SRC))
 CC = gcc
 GFLAGS = -ansi -Wall -pedantic-errors -Werror -g -lm
@@ -8,7 +9,7 @@ GFLAGS = -ansi -Wall -pedantic-errors -Werror -g -lm
 $(MAIN): $(OBJ)
 	$(CC) $(GFLAGS) $(OBJ) -o $@
 
-%.o: %.c
+%.o: %.c $(DEPS)
 	$(CC) $(GFLAGS) -c $< -o $@
 
 clean:

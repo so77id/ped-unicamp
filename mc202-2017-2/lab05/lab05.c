@@ -10,40 +10,34 @@ typedef struct {
     int phone;
 } person;
 
-person * init_person(char *name, int phone) {
-    person *p;
-    p = (person *)malloc(sizeof(p));
-    strcpy(p->name, name);
-    p->phone = phone;
+person init_person(char *name, int phone) {
+    person p;
+    strcpy(p.name, name);
+    p.phone = phone;
 
     return p;
 }
 
-void print_person(person *p) {
-    printf("%s %d\n", p->name, p->phone);
-}
-
-int delete_person(person *p) {
-    free(p);
-    return 0;
+void print_person(person p) {
+    printf("%s %d", p.name, p.phone);
 }
 
 
 typedef struct {
-    person **list;
+    person *list;
     int capacity;
     int quantity;
 } person_list;
 
 
-person_list * init_person_list() {
+person_list *init_person_list() {
     person_list *pl;
     pl = malloc(sizeof(person_list));
 
     pl->capacity = PERSON_LIST_INIT_CAPACITY;
     pl->quantity = 0;
 
-    pl->list = (person **)malloc(pl->capacity * sizeof(person *));
+    pl->list = (person *)malloc(pl->capacity * sizeof(person));
 
     return pl;
 }
@@ -51,11 +45,11 @@ person_list * init_person_list() {
 void duplicate_capacity(person_list *pl) {
     int i;
 
-    person **p_aux;
+    person *p_aux;
 
     pl->capacity *=2;
 
-    p_aux = (person **)malloc(pl->capacity * sizeof(person *));
+    p_aux = (person *)malloc(pl->capacity * sizeof(person));
 
     for (i = 0; i < pl-> quantity; i++)
         p_aux[i] = pl->list[i];
@@ -64,7 +58,7 @@ void duplicate_capacity(person_list *pl) {
     pl->list = p_aux;
 }
 
-void add_person_to_list(person_list *pl, person *p) {
+void add_person_to_list(person_list *pl, person p) {
     if (pl->quantity +1 >= pl->capacity) {
         duplicate_capacity(pl);
     }
@@ -81,33 +75,43 @@ void print_person_list(person_list *pl) {
 
 
 int delete_person_list(person_list *pl) {
-    int i;
-
-    for (i = 0; i < pl-> quantity; i++) {
-        delete_person(pl->list[i]);
-    }
     free(pl->list);
     free(pl);
     return 0;
 }
 
+
+int comp (const void * elem1, const void * elem2)
+{
+    person f = *((person *)elem1);
+    person s = *((person *)elem2);
+    if (f.phone > s.phone) return  1;
+    if (f.phone < s.phone) return -1;
+    return 0;
+}
+
 int main(int argc, char const *argv[]) {
-    int phone;
     char name[MAX_SIZE_NAME];
-    person *p;
+    int phone;
+    person p;
     person_list *pl;
 
     pl = init_person_list();
 
-    scanf("%s %d", name, &phone);
+    scanf("%s", name);
     while(strcmp(name,"fim") != 0) {
+        scanf("%d", &phone);
+
         p = init_person(name, phone);
         add_person_to_list(pl, p);
 
-        scanf("%s %d", name, &phone);
+        scanf("%s", name);
     }
 
-    print_person_list(pl);
+    scanf("%d", &phone);
+    qsort (pl->list, pl->quantity, sizeof(person), comp);
+    print_person(pl->list[phone-1]);
+
     delete_person_list(pl);
 
     return 0;
