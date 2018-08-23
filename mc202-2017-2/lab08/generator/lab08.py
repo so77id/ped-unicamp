@@ -11,6 +11,9 @@ for i in range(n_op):
     elif op == "-":
         new_n = int(op_s[1])
         number -= new_n
+    elif op == "*":
+        new_n = int(op_s[1])
+        number *= new_n
     elif op == "i":
         number *= -1
 

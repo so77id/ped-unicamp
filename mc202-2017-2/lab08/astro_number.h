@@ -33,6 +33,8 @@ p_astro_number inverse(p_astro_number a);
 p_astro_number sum(p_astro_number a, p_astro_number b);
 p_astro_number subtract(p_astro_number a, p_astro_number b);
 p_astro_number multiply(p_astro_number a, p_astro_number b);
+p_astro_number multiply_by_digit(p_astro_number a, int digit);
+p_astro_number add_zeros_in_tail(p_astro_number a, int n_zeros);
 p_astro_number division(p_astro_number a, p_astro_number b);
 
 int cmp(p_astro_number a, p_astro_number b);

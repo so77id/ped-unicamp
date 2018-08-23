@@ -28,6 +28,12 @@ int main(int argc, char const *argv[]) {
             c = subtract(a, b);
             delete_astro_number(a);
             delete_astro_number(b);
+        }  else if (op[0] == '*') {
+            scanf("%s", NUM_IN);
+            b = create_astro_number(NUM_IN);
+            c = multiply(a, b);
+            delete_astro_number(a);
+            delete_astro_number(b);
         } else if (op[0] == 'i') {
             c = inverse(a);
             delete_astro_number(a);

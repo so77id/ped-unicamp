@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "astro_number.h"
 
@@ -276,6 +277,147 @@ p_astro_number subtract(p_astro_number a, p_astro_number b) {
     return c;
 }
 
+
+p_astro_number multiply(p_astro_number a, p_astro_number b) {
+    int i;
+    p_astro_number c, aux, sum_, inv_a, inv_b, inv_c, aux_;
+    p_node b_ptr;
+
+    if (a->sign == 1 && b->sign == -1) {
+        inv_b = inverse(b);
+        c = multiply(a, inv_b);
+        inv_c = inverse(c);
+
+        delete_astro_number(inv_b);
+        delete_astro_number(c);
+
+        return inv_c;
+    } else if (a->sign == -1 && b->sign == 1) {
+        inv_a = inverse(a);
+        c = multiply(inv_a, b);
+        inv_c = inverse(c);
+
+        delete_astro_number(inv_a);
+        delete_astro_number(c);
+
+        return inv_c;
+    } else if (a->sign == -1 && b->sign == -1) {
+        inv_a = inverse(a);
+        inv_b = inverse(b);
+        c = multiply(inv_a, inv_b);
+
+        delete_astro_number(inv_a);
+        delete_astro_number(inv_b);
+
+        return c;
+    }
+
+    c = create_astro_number("0");
+
+    i = 0;
+    for (b_ptr = b->tail; b_ptr; b_ptr = b_ptr->prev) {
+
+        aux = multiply_by_digit(a, b_ptr->number);
+        aux_ = add_zeros_in_tail(aux, i);
+        sum_ = sum(c, aux_);
+
+        printf("-------------\n");
+        printf("Multiplicando\n");
+        print_astro_number(a);
+        printf("* %d\n", b_ptr->number);
+        printf("result: ");
+        print_astro_number(aux);
+        printf("potenciado: ");
+        print_astro_number(aux_);
+        printf("Estado anterior de c: ");
+        print_astro_number(c);
+
+        delete_astro_number(c);
+        delete_astro_number(aux);
+        delete_astro_number(aux_);
+
+
+        c = sum_;
+        i++;
+
+
+        printf("Estado actual de c: ");
+        print_astro_number(c);
+        printf("\n");
+
+
+
+    }
+
+    return c;
+}
+
+p_astro_number add_zeros_in_tail(p_astro_number a, int n_zeros) {
+    int i;
+    p_node new;
+    if (a->head == a->tail && a->head == NULL) return a;
+
+    for (i = 0; i < n_zeros; i++) {
+        new = create_node(0, NULL, a->tail);
+        a->tail->next = new;
+        a->tail = new;
+        a->digits++;
+    }
+
+    return a;
+}
+
+
+p_astro_number multiply_by_digit(p_astro_number a, int digit) {
+    int rest, aux_nun;
+    p_astro_number aux;
+    p_node a_ptr, c_next, nc;
+
+    aux = malloc(sizeof(AstroNumber));
+    if((digit >= 0 && a->sign > 0) || (digit <= 0 && a->sign < 0)) {
+        aux->sign = 1;
+    } else {
+        aux->sign = 0;
+    }
+    aux->digits = 0;
+    aux->head = aux->tail = NULL;
+
+    rest = 0;
+    c_next = NULL;
+    for (a_ptr = a->tail; a_ptr; a_ptr = a_ptr->prev) {
+
+        aux_nun = rest + (a_ptr->number * digit);
+        rest = aux_nun / 10;
+        aux_nun = aux_nun % 10;
+
+        nc = create_node(aux_nun, c_next, NULL);
+
+        if (c_next) c_next->prev = nc;
+
+        c_next = nc;
+
+        if (!aux->tail) {
+            aux->tail = nc;
+        }
+        aux->digits++;
+    }
+
+    if (rest) {
+        nc = create_node(rest, c_next, NULL);
+        if (c_next) c_next->prev = nc;
+
+        c_next = nc;
+        aux->digits++;
+    }
+
+    aux->head = nc;
+
+    delete_left_zeros(aux);
+
+    return aux;
+
+
+}
 
 int cmp(p_astro_number a, p_astro_number b) {
     p_node a_aux, b_aux;
