@@ -86,12 +86,21 @@ void delete_astro_number(p_astro_number astro_number) {
 
 
 p_astro_number inverse(p_astro_number a) {
-
     p_node n_aux, a_aux, prev;
     p_astro_number new;
+
     new = malloc(sizeof(AstroNumber));
     new->tail = new->head = NULL;
     new->digits = 0;
+
+
+    if (a->head && a->head->next == NULL && a->head->number == 0) {
+        new->tail = new->head = create_node(0, NULL, NULL);
+        new->sign = 1;
+        new->digits++;
+        return new;
+    }
+
 
     a_aux = a->head;
     prev = NULL;

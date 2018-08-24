@@ -1,6 +1,6 @@
 #!/bin/bash
 # search_dir=../testes_fechados
-search_dir=../testes_fechados
+search_dir=../testes_abertos
 
 
 cd /src/lab08/generator

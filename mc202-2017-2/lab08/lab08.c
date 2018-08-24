@@ -1,22 +1,20 @@
 #include <stdio.h>
 #include "astro_number.h"
 
-#define MAX_SIZE_OPERATION 2
+#define MAX_SIZE_OPERATION 4
 
 int main(int argc, char const *argv[]) {
-    int i, n_op;
     char NUM_IN[MAX_NUMBER_SIZE_IN], op[MAX_SIZE_OPERATION];
     p_astro_number a, b, c;
 
-    scanf("%s", NUM_IN);
-    a = create_astro_number(NUM_IN);
+    a = create_astro_number("0");
 
-    scanf("%d", &n_op);
-
-    for (i = 0; i < n_op; i++) {
+    while(1) {
         scanf("%s", op);
 
-        if (op[0] == '+') {
+        if (op[0] == 'e') {
+            break;
+        } else if (op[0] == '+') {
             scanf("%s", NUM_IN);
             b = create_astro_number(NUM_IN);
             c = sum(a, b);
