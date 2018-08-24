@@ -35,22 +35,22 @@ def new_operation(file, d_min=1, d_max=10000, last_op=0):
 
     return op
 
-n_examples = 15
-MAX_D = 10000
-MAX_OP = 50
-path = "../testes_abertos"
+n_examples = 10
+MAX_D = 1000
+MAX_OP = 25
+path = "../testes_fechados"
 
 
 
 for i in range(n_examples):
     filename = "%s/arq%02d.in" % (path, i + 1)
     d_min = 1
-    d_max = min(2**(i+1), MAX_D)
+    d_max = min(2**(i+5), MAX_D)
 
     with open(filename, 'w') as file:
         first_n = new_num(d_min, d_max)
         o_min = max(int(((i) * MAX_OP)/n_examples), 1)
-        o_max = min(int(((i+2) * MAX_OP)/n_examples), MAX_OP)
+        o_max = min(int(((i+5) * MAX_OP)/n_examples), MAX_OP)
 
         print(filename, d_min, d_max, o_min, o_max)
 

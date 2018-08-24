@@ -1,6 +1,5 @@
 MAIN = lab08
 
-ARQS = $(wildcard testes_*/*.in)
 SRC = $(wildcard *.c)
 DEPS = $(wildcard *.h)
 OBJ = $(patsubst %.c, %.o, $(SRC))
@@ -25,7 +24,7 @@ testar_tudo: $(MAIN)
 		echo "*****************************************************************" ; \
 		exit 1 ; \
 	fi ; \
-	for entrada in $(ARQS) ; do \
+	for entrada in testes_*/*.in ; do \
 		saida=$$(echo "$$entrada" | sed -re 's/\.in$$/.out/' ) ; \
 		resposta=$$(echo "$$entrada" | sed -re 's/\.in$$/.res/' ) ; \
 		./$(MAIN) < "$$entrada" > "$$saida" ; \

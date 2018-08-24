@@ -1,6 +1,6 @@
 #!/bin/bash
 # search_dir=../testes_fechados
-search_dir=../testes_abertos
+search_dir=../testes_fechados
 
 
 cd /src/lab08/generator
@@ -18,10 +18,6 @@ arqlist=(
          "arq08"
          "arq09"
          "arq10"
-         "arq11"
-         "arq12"
-         "arq14"
-         "arq15"
 )
 
 ## now loop through the above array
