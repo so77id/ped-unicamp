@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]) {
     while(1) {
         scanf("%s", op);
 
-        if (op[0] == 'e') {
+        if (op[0] == '#') {
             break;
         } else if (op[0] == '+') {
             scanf("%s", NUM_IN);
