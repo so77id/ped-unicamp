@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "numero_astronomico.h"
+#include "astro_number.h"
 
 #define MAX_SIZE_OPERATION 4
 
