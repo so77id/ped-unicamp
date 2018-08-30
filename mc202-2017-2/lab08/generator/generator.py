@@ -46,7 +46,7 @@ def new_operation(file, a_num, d_min=1, d_max=10000, last_op=0, choices=[0,0,0,0
         file.write("{}\n".format(op_s))
 
     return op, a_num
-init = 9
+init = 8
 n_examples = 1 + init
 MAX_D = 1000
 MAX_OP = 25
