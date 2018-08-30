@@ -5,7 +5,7 @@ number = 0
 while 1:
     op_s = raw_input().split(' ')
     op = op_s[0]
-    if op == "end":
+    if op == "#":
         break
     elif op == "+":
         new_n = int(op_s[1])
