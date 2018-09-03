@@ -46,12 +46,12 @@ def new_operation(file, a_num, d_min=1, d_max=10000, last_op=0, choices=[0,0,0,0
         file.write("{}\n".format(op_s))
 
     return op, a_num
-init = 8
-n_examples = 1 + init
+init = 7
+n_examples = 3 + init
 MAX_D = 1000
 MAX_OP = 25
 path = "../testes_fechados"
-choices = [0, 1]
+choices = [0,0,0,0,2]
 
 num = 0
 for i in range(init,n_examples):
@@ -76,5 +76,5 @@ for i in range(init,n_examples):
             if j == 0:
                 op, num = new_operation(file, num, d_min, d_max, op, [0])
             else:
-                op, num = new_operation(file, num, d_min, d_max, op)
+                op, num = new_operation(file, num, d_min, d_max, op, choices)
         file.write("#\n")
