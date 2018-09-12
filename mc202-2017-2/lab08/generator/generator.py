@@ -10,13 +10,14 @@ def random_with_N_digits(n):
 def get_n_digits(n):
     return len(str(n))
 
-def new_num(d_min=1, d_max=10000):
+def new_num(d_min=1, d_max=1000):
     n_digits = randint(d_min, d_max)
     # sign = random.choice([-1,1])
+    print(n_digits)
     return random_with_N_digits(n_digits)
 
 
-def new_operation(file, a_num, d_min=1, d_max=10000, last_op=0, choices=[0,0,0,0,0,1,1,1,1,1,2,2,2]):
+def new_operation(file, a_num, d_min=1, d_max=1000, last_op=0, choices=[0,0,0,0,0,1,1,1,1,1,2,2,2]):
     op = random.choice(choices)
     while (last_op == 3 and op == 3):
         op = random.choice(choices)

@@ -2,7 +2,7 @@
 #define ASTRO_NUMBER_H
 
 
-#define MAX_NUMBER_SIZE_IN 10000
+#define MAX_NUMBER_SIZE_IN 1000
 
 
 typedef struct node {

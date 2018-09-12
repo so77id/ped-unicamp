@@ -19,4 +19,5 @@ while 1:
     elif op == "i":
         number *= -1
 
-    print number
+    print len(str(op_s[1]))
+    # print number
