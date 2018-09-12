@@ -8,6 +8,7 @@ while 1:
     if op == "#":
         break
     elif op == "+":
+        # print("entrando:", op_s[1])
         new_n = int(op_s[1])
         number += new_n
     elif op == "-":
@@ -19,5 +20,5 @@ while 1:
     elif op == "i":
         number *= -1
 
-    print len(str(op_s[1]))
-    # print number
+    # print len(str(op_s[1]))
+    print number

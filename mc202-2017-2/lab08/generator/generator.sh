@@ -1,11 +1,11 @@
 #!/bin/bash
 # search_dir=../testes_fechados
-search_dir=../testes_abertos
+search_dir=../testes_fechados
 
 
 cd /src/lab08/generator
 
-# python generator.py
+python generator.py
 
 arqlist=(
          "arq01"
