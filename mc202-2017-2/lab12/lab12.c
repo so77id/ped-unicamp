@@ -5,12 +5,14 @@
 #include <string.h>
 
 int min(p_product a, p_product b) {
-    return a->weight - b->weight;
+    if(a->weight == b->weight) return strcmp(a->name, b->name);
+    else return a->weight - b->weight;
 }
 
 
 int max(p_product a, p_product b) {
-    return b->weight - a->weight;
+    if(a->weight == b->weight) return strcmp(b->name, a->name); 
+    else return b->weight - a->weight;
 }
 
 int main(int argc, char const *argv[]) {
@@ -67,7 +69,7 @@ int main(int argc, char const *argv[]) {
 
         scanf("%s", product_name);
     }
-    
+
     delete_heap(max_heap);
     delete_heap(min_heap);
 
