@@ -1,10 +1,9 @@
 import operator
 
 d = {}
-while 1:
+n_f = int(raw_input())
+for i in range(n_f):
     op = raw_input().split(' ')
-    if op[0] == "#":
-        break
 
     name, w = op
     d[int(w)] = name

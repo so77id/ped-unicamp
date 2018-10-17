@@ -37,6 +37,7 @@ for i in range(init_example, n_examples):
     n_fruits = random.randint(f_min, f_max)
 
     with open(filename, 'w') as file:
+        file.write("{}\n".format(n_fruits))
         kgs = {}
         for j in range(n_fruits):
             fruit = random.choice(fruits)
@@ -47,4 +48,3 @@ for i in range(init_example, n_examples):
             kgs[kg] = kg
 
             file.write("{} {}\n".format(fruit, kg))
-        file.write("#\n")
