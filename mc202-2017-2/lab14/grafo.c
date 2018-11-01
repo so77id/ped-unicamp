@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "graph.h"
+#include "grafo.h"
 
 
 p_graph create_graph(int n_nodes) {

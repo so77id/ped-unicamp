@@ -1,5 +1,5 @@
-#ifndef HEAP_H
-#define HEAP_H
+#ifndef GRAPH_H
+#define GRAPH_H
 
 typedef struct graph {
     int **M;
